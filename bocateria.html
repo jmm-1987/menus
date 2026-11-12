@@ -13,6 +13,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Tarjeta de pedido online de bocatería con bocadillo, precio y botón de WhatsApp">
 <meta name="twitter:card" content="summary_large_image">
+<script src="clarity-consent.js" defer></script>
 <style>
 :root{--bg:#fff9ec;--card:#fff;--ink:#3b2a22;--mut:#8a7468;--acc:#dc2626;--line:#f0e2d6;--wa:#16a34a;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -62,7 +63,7 @@ input:disabled{opacity:.6}
 <button id="bar" onclick="openCart()"><span id="bn"></span><b id="bt"></b></button>
 
 <div id="sheet" onclick="if(event.target===this)closeCart()">
-  <div id="panel">
+  <div id="panel" data-clarity-mask>
     <button class="x" onclick="closeCart()" aria-label="Cerrar">×</button>
     <h2 style="margin:0 0 6px">Tu pedido</h2>
     <div id="items"></div>

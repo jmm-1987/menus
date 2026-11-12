@@ -13,6 +13,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Tarjeta de pedido online de pizzería con Pizza Margarita, precio y botón de WhatsApp">
 <meta name="twitter:card" content="summary_large_image">
+<script src="clarity-consent.js" defer></script>
 <style>
 :root{--bg:#fff9ec;--card:#fff;--ink:#3b2a22;--mut:#8a7468;--acc:#dc2626;--line:#f0e2d6;--wa:#16a34a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1410;--card:#2a1e18;--ink:#f5e9df;--mut:#b09a8c;--acc:#f87171;--line:#3d2d25}}
@@ -36,7 +37,7 @@ header{padding:28px 18px 8px;text-align:center}header h1{margin:0;font-size:28px
 <header><img class="business-logo" src="logo.png" alt="Logo del negocio"><h1 class="visually-hidden">Pizzería</h1><p>Pizzas artesanas · Recogida y reparto</p><div class="shop-meta"><span>🕒 <strong>Horario:</strong> todos los días, 12:00–22:30</span><span>📍 <strong>Dirección completa:</strong> Calle Ruiz Azorín, 54, 06800 Mérida</span></div></header>
 <div class="tabs" id="tabs"></div><div class="grid" id="grid"></div><p class="demo">Pedidos por WhatsApp · <a href="index.html">Volver al inicio</a></p>
 <button id="bar" onclick="openCart()"><span id="bn"></span><b id="bt"></b></button>
-<div id="sheet" onclick="if(event.target===this)closeCart()"><div id="panel">
+<div id="sheet" onclick="if(event.target===this)closeCart()"><div id="panel" data-clarity-mask>
 <button class="x" onclick="closeCart()" aria-label="Cerrar">×</button><h2 style="margin:0 0 6px">Tu pedido</h2><div id="items"></div>
 <div class="fulfillment" role="group" aria-label="Elige cómo recibir el pedido"><button id="pickupChoice" type="button" onclick="setFulfillment('pickup')"><span aria-hidden="true">🏪</span>Recogida en tienda</button><button id="deliveryChoice" type="button" onclick="setFulfillment('delivery')"><span aria-hidden="true">🛵</span>A domicilio</button></div>
 <div class="row" style="margin:14px 0 4px"><b>Total</b><b id="tot"></b></div>
