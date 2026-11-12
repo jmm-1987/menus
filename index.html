@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fff7ed">
+<title>Menús · Inicio</title>
+<style>
+:root{color-scheme:light;--ink:#30251f;--muted:#79685e;--accent:#c2410c;--paper:#fffaf3;--line:#f0dfcf}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 10% 12%,#fed7aa88,transparent 36%),radial-gradient(ellipse at 88% 76%,#fde68a77,transparent 34%),var(--paper);background-size:140% 140%;animation:ambience 18s ease-in-out infinite alternate}
+main{width:min(980px,100%);margin:auto;padding:56px 22px 40px}
+.intro{text-align:center;margin:0 auto 34px;max-width:680px}
+.mark{width:min(280px,70vw);margin:0 auto 16px}
+.mark img{display:block;width:100%;max-height:152px;height:auto;object-fit:contain}
+h1{margin:0;font-size:clamp(2rem,7vw,3.2rem);letter-spacing:-.05em}
+.intro p{margin:10px 0 0;color:var(--muted);font-size:1.04rem}
+.shop{margin:24px auto 0;padding:14px 18px;max-width:560px;border:1px solid var(--line);border-radius:18px;background:#ffffffc9;color:var(--muted);line-height:1.65}
+.shop strong{color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.menu{position:relative;display:flex;align-items:center;gap:16px;min-height:124px;padding:20px;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 8px 26px #63310d0b;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.menu:hover,.menu:focus-visible{transform:translateY(-4px);border-color:#fdba74;box-shadow:0 16px 34px #63310d18;outline:none}
+.icon{display:grid;place-items:center;flex:0 0 64px;height:64px;border-radius:20px;background:#fff3e5;font-size:34px}
+.menu h2{margin:0;font-size:1.16rem}
+.menu p{margin:5px 0 0;color:var(--muted);font-size:.9rem}
+.arrow{margin-left:auto;color:var(--accent);font-size:1.5rem}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:28px 8px 0}
+@keyframes ambience{from{background-position:0 0,100% 100%}to{background-position:100% 20%,0 80%}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<main>
+  <header class="intro">
+    <div class="mark"><img src="logo.png" alt="Logo del negocio"></div>
+    <h1>Todos los menús, aquí</h1>
+    <p>Elige tu carta, prepara el pedido y envíalo fácilmente por WhatsApp.</p>
+    <div class="shop"><strong>Horario</strong> · Todos los días, 12:00–22:30<br><strong>Dirección</strong> · Calle Ruiz Azorín, 54, 06800 Mérida</div>
+  </header>
+  <nav class="grid" aria-label="Cartas disponibles">
+    <a class="menu" href="pizzeria.html"><span class="icon" aria-hidden="true">🍕</span><span><h2>Pizzería</h2><p>Pizzas, entrantes y bebidas</p></span><span class="arrow" aria-hidden="true">›</span></a>
+    <a class="menu" href="bocateria.html"><span class="icon" aria-hidden="true">🥪</span><span><h2>Bocatería</h2><p>Bocadillos, raciones y más</p></span><span class="arrow" aria-hidden="true">›</span></a>
+    <a class="menu" href="comidas.html"><span class="icon" aria-hidden="true">🍲</span><span><h2>Comidas</h2><p>Platos caseros y postres</p></span><span class="arrow" aria-hidden="true">›</span></a>
+    <a class="menu" href="hamburgueseria.html"><span class="icon" aria-hidden="true">🍔</span><span><h2>Hamburguesería</h2><p>Hamburguesas y acompañamientos</p></span><span class="arrow" aria-hidden="true">›</span></a>
+    <a class="menu" href="polleria.html"><span class="icon" aria-hidden="true">🍗</span><span><h2>Pollería</h2><p>Pollo a la brasa y combos</p></span><span class="arrow" aria-hidden="true">›</span></a>
+  </nav>
+  <footer>Información del local editable en cada carta.</footer>
+</main>
+</body>
+</html>

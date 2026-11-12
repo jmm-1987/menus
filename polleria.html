@@ -9,8 +9,7 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c1410;--card:#2a1e18;--ink:#f5e9df;--mut:#b09a8c;--acc:#f87171;--line:#3d2d25}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,sans-serif}
 header{padding:28px 18px 8px;text-align:center}header h1{margin:0;font-size:28px;letter-spacing:.5px}header p{margin:6px 0 0;color:var(--mut);font-size:14px}
-.logo-placeholder{width:92px;height:70px;margin:0 auto 10px;border:2px dashed var(--acc);border-radius:16px;background:var(--card);display:flex;flex-direction:column;justify-content:center;align-items:center;color:var(--acc);line-height:1.05}
-.logo-placeholder b{font-size:14px;letter-spacing:1px}.logo-placeholder span{font-size:10px;font-weight:700}.logo-placeholder small{margin-top:4px;color:var(--mut);font-size:8px;letter-spacing:.5px}
+.business-logo{display:block;width:min(260px,70vw);max-height:142px;height:auto;object-fit:contain;margin:0 auto 10px}
 .tabs{display:flex;gap:8px;padding:14px 16px;overflow-x:auto;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
 .tab{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:99px;font-size:14px;white-space:nowrap;cursor:pointer}.tab.on{background:var(--acc);border-color:var(--acc);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;padding:4px 16px 120px;max-width:900px;margin:0 auto}
@@ -22,17 +21,24 @@ header{padding:28px 18px 8px;text-align:center}header h1{margin:0;font-size:28px
 .item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);gap:8px}input,textarea,select{width:100%;margin-top:8px;padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit;font-size:15px}input:disabled{opacity:.6}
 .send{display:block;width:100%;margin-top:14px;background:var(--wa);color:#fff;border:0;border-radius:14px;padding:14px;font-size:16px;font-weight:600;cursor:pointer}.x{float:right;background:none;border:0;color:var(--mut);font-size:24px;cursor:pointer}.demo{text-align:center;font-size:11px;color:var(--mut);padding:0 16px 20px}
 </style>
+<link rel="stylesheet" href="menu.css">
 </head>
 <body>
-<header><div class="logo-placeholder" role="img" aria-label="Logo de prueba: reemplazar por el logo del negocio"><b>LOGO</b><span>DE PRUEBA</span><small>REEMPLAZAR</small></div><h1>🍗 Pollería de prueba</h1><p>Pollo a la brasa y acompañamientos · Abierto de 12:00 a 22:30 · Recogida y reparto</p></header>
-<div class="tabs" id="tabs"></div><div class="grid" id="grid"></div><p class="demo">Demo de pedidos por WhatsApp para pollerías</p>
+<header><img class="business-logo" src="logo.png" alt="Logo del negocio"><h1 class="visually-hidden">Pollería</h1><p>Pollo a la brasa y acompañamientos · Recogida y reparto</p><div class="shop-meta"><span>🕒 <strong>Horario:</strong> todos los días, 12:00–22:30</span><span>📍 <strong>Dirección completa:</strong> Calle Ruiz Azorín, 54, 06800 Mérida</span></div></header>
+<div class="tabs" id="tabs"></div><div class="grid" id="grid"></div><p class="demo">Pedidos por WhatsApp · <a href="index.html">Volver al inicio</a></p>
 <button id="bar" onclick="openCart()"><span id="bn"></span><b id="bt"></b></button>
 <div id="sheet" onclick="if(event.target===this)closeCart()"><div id="panel">
 <button class="x" onclick="closeCart()" aria-label="Cerrar">×</button><h2 style="margin:0 0 6px">Tu pedido</h2><div id="items"></div>
-<div class="row" style="margin:14px 0 4px"><b>Total</b><b id="tot"></b></div><input id="name" placeholder="Tu nombre"><input id="phone" type="tel" autocomplete="tel" placeholder="Teléfono de contacto" required><select id="fulfillment" onchange="updateFulfillment()" aria-label="Cómo quieres recibir el pedido"><option value="pickup">Recoger en el local</option><option value="delivery">Entrega a domicilio</option></select><input id="when" placeholder="Hora de recogida o entrega"><div id="addressField" hidden><input id="addr" placeholder="Dirección de entrega" disabled></div><textarea id="note" rows="2" placeholder="Notas (sin picante, alergias...)"></textarea><button class="send" onclick="send()">Enviar pedido por WhatsApp</button>
+<div class="fulfillment" role="group" aria-label="Elige cómo recibir el pedido"><button id="pickupChoice" type="button" onclick="setFulfillment('pickup')"><span aria-hidden="true">🏪</span>Recogida en tienda</button><button id="deliveryChoice" type="button" onclick="setFulfillment('delivery')"><span aria-hidden="true">🛵</span>A domicilio</button></div>
+<div class="row" style="margin:14px 0 4px"><b>Total</b><b id="tot"></b></div>
+<label class="field-label">Nombre<input id="name" autocomplete="name" placeholder="Tu nombre" required></label>
+<label class="field-label">Teléfono<input id="phone" type="tel" autocomplete="tel" placeholder="Teléfono de contacto" required></label>
+<div id="pickupFields" class="form-section"><label class="field-label">Hora de recogida<input id="pickupTime" type="time" required></label></div>
+<div id="deliveryFields" class="form-section" hidden><label class="field-label">Calle<input id="street" autocomplete="address-line1" placeholder="Nombre de la calle" disabled required></label><label class="field-label">Número<input id="streetNumber" placeholder="Número, piso y puerta" disabled required></label><label class="field-label">Población<input id="town" autocomplete="address-level2" placeholder="Población" disabled required></label></div>
+<label class="field-label">Notas<textarea id="note" rows="2" placeholder="Alergias, indicaciones para la entrega..."></textarea></label><button class="send" onclick="send()">Enviar pedido por WhatsApp</button>
 </div></div>
 <script>
-const PHONE='34600000000';
+const PHONE='34711552468';
 const P=[
 {n:'Pollo entero',d:'A la brasa, con salsas de la casa',p:14.5,c:'Pollos',e:'🍗',img:'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=640&auto=format&fit=crop&q=80'},
 {n:'Medio pollo',d:'A la brasa, con salsas de la casa',p:8.5,c:'Pollos',e:'🍗',img:'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=640&auto=format&fit=crop&q=80'},
@@ -44,21 +50,25 @@ const P=[
 {n:'Patatas fritas',d:'Ración grande, doradas y crujientes',p:3.5,c:'Extras',e:'🍟',img:'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=640&auto=format&fit=crop&q=80'},
 {n:'Ensalada',d:'Fresca y preparada al momento',p:3.5,c:'Extras',e:'🥗',img:'https://images.unsplash.com/photo-1547592180-85f173990554?w=640&auto=format&fit=crop&q=80'},
 {n:'Salsa de la casa',d:'Tarrina extra',p:0.8,c:'Extras',e:'🥣',img:'https://images.unsplash.com/photo-1547592180-85f173990554?w=640&auto=format&fit=crop&q=80'},
-{n:'Refresco',d:'Lata de 33 cl',p:2,c:'Bebidas',e:'🥤',img:'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=640&auto=format&fit=crop&q=80'},
-{n:'Agua',d:'Botella de 50 cl',p:1.5,c:'Bebidas',e:'💧',img:'https://images.unsplash.com/photo-1600788886242-5c96aabe3757?w=640&auto=format&fit=crop&q=80'}
+{n:'Coca-Cola',d:'Lata de 33 cl',p:2,c:'Bebidas',e:'🥤',img:'coca.png'},
+{n:'Zumo de piña',d:'Botella individual',p:2.5,c:'Bebidas',e:'🍍',img:'zumo.png'},
+{n:'Fanta Limón',d:'Lata de 33 cl',p:2,c:'Bebidas',e:'🍋',img:'fanta.png'},
+{n:'Aquarius',d:'Lata de 33 cl',p:2,c:'Bebidas',e:'🥤',img:'aquarius.png'},
+{n:'Agua',d:'Botella de 50 cl',p:1.5,c:'Bebidas',e:'💧',img:'agua.png'}
 ];
-const art=i=>`<img src="${P[i].img}" alt="${P[i].n}" loading="lazy">`,cats=['Todo',...new Set(P.map(x=>x.c))];let cat='Todo',cart={};
+const art=i=>`<img class="${P[i].c==='Bebidas'?'product-image':''}" src="${P[i].img}" alt="${P[i].n}" loading="lazy">`,categoryIcons={'Todo':'🍽️','Pollos':'🍗','Combos':'🥡','Extras':'🍟','Bebidas':'🥤'},cats=['Todo',...new Set(P.map(x=>x.c))];let cat='Todo',cart={},fulfillment='pickup';
 const eur=v=>v.toFixed(2).replace('.',',')+' €',$=id=>document.getElementById(id);
-function tabs(){$('tabs').innerHTML=cats.map(c=>`<button class="tab ${c===cat?'on':''}" onclick="cat='${c}';tabs();grid()">${c}</button>`).join('')}
+function tabs(){$('tabs').innerHTML=cats.map(c=>`<button class="tab ${c===cat?'on':''}" onclick="cat='${c}';tabs();grid()">${categoryIcons[c]||'🍴'} ${c}</button>`).join('')}
 function ctrl(i){const q=cart[i]||0;return q?`<div class="qty"><button onclick="chg(${i},-1)">−</button><b>${q}</b><button onclick="chg(${i},1)">+</button></div>`:`<button class="add" onclick="chg(${i},1)">Añadir</button>`}
 function grid(){$('grid').innerHTML=P.map((x,i)=>({x,i})).filter(o=>cat==='Todo'||o.x.c===cat).map(({x,i})=>`<div class="card"><div class="emo">${art(i)}</div><h3>${x.n}</h3><p>${x.d}</p><div class="row"><span class="price">${eur(x.p)}</span><span id="c${i}">${ctrl(i)}</span></div></div>`).join('')}
 function chg(i,d){cart[i]=Math.max(0,(cart[i]||0)+d);if(!cart[i])delete cart[i];const el=$('c'+i);if(el)el.innerHTML=ctrl(i);bar();if($('sheet').style.display==='flex')items()}
 function totals(){let n=0,t=0;for(const i in cart){n+=cart[i];t+=cart[i]*P[i].p}return{n,t}}
 function bar(){const{n,t}=totals();$('bar').style.display=n?'flex':'none';$('bn').textContent=`🛒 Ver pedido (${n})`;$('bt').textContent=eur(t)}
-function items(){const{t}=totals();$('items').innerHTML=Object.keys(cart).map(i=>`<div class="item"><span>${P[i].e} ${P[i].n}<br><small style="color:var(--mut)">${eur(P[i].p)}</small></span><div class="qty"><button onclick="chg(${i},-1)">−</button><b>${cart[i]}</b><button onclick="chg(${i},1)">+</button></div></div>`).join('')||'<p>Tu pedido está vacío.</p>';$('tot').textContent=eur(t);if(!Object.keys(cart).length)closeCart()}
+function items(){const{t}=totals();$('items').innerHTML=Object.keys(cart).map(i=>`<div class="item"><span>${P[i].e||categoryIcons[P[i].c]||'🍴'} ${P[i].n}<br><small style="color:var(--mut)">${eur(P[i].p)}</small></span><div class="qty"><button onclick="chg(${i},-1)">−</button><b>${cart[i]}</b><button onclick="chg(${i},1)">+</button></div></div>`).join('')||'<p>Tu pedido está vacío.</p>';$('tot').textContent=eur(t);if(!Object.keys(cart).length)closeCart()}
 function openCart(){items();$('sheet').style.display='flex'}function closeCart(){$('sheet').style.display='none'}
-function updateFulfillment(){const delivery=$('fulfillment').value==='delivery';$('addressField').hidden=!delivery;$('addr').disabled=!delivery;$('addr').required=delivery}
-function send(){const{t}=totals();if(!t)return;$('phone').value=$('phone').value.trim();$('addr').value=$('addr').value.trim();if(!$('phone').reportValidity()||!$('addr').reportValidity())return;const delivery=$('fulfillment').value==='delivery';const lines=Object.keys(cart).map(i=>`• ${cart[i]} x ${P[i].n} (${eur(cart[i]*P[i].p)})`).join('\n');const msg=`Hola, quiero hacer un pedido:\n${lines}\n\nTotal: ${eur(t)}\nNombre: ${$('name').value||'-'}\nTeléfono: ${$('phone').value}\nModalidad: ${delivery?'Entrega a domicilio':'Recogida en local'}\nHora: ${$('when').value||'-'}\nDirección: ${delivery?$('addr').value:'-'}\nNotas: ${$('note').value||'-'}`;window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`,'_blank')}
+function setFulfillment(mode){fulfillment=mode;updateFulfillment()}
+function updateFulfillment(){const delivery=fulfillment==='delivery';$('pickupFields').hidden=delivery;$('deliveryFields').hidden=!delivery;$('pickupChoice').classList.toggle('active',!delivery);$('deliveryChoice').classList.toggle('active',delivery);$('pickupChoice').setAttribute('aria-pressed',String(!delivery));$('deliveryChoice').setAttribute('aria-pressed',String(delivery));$('pickupTime').disabled=delivery;$('pickupTime').required=!delivery;['street','streetNumber','town'].forEach(id=>{$(id).disabled=!delivery})}
+function send(){const{t}=totals();if(!t)return;if(!['name','phone',...(fulfillment==='pickup'?['pickupTime']:['street','streetNumber','town'])].every(id=>$(id).reportValidity()))return;const delivery=fulfillment==='delivery';const lines=Object.keys(cart).map(i=>`• ${cart[i]} x ${P[i].n} (${eur(cart[i]*P[i].p)})`).join('\n');const address=delivery?`${$('street').value}, ${$('streetNumber').value}, ${$('town').value}`:'-';const msg=`Hola, quiero hacer un pedido:\n${lines}\n\nTotal: ${eur(t)}\nNombre: ${$('name').value}\nTeléfono: ${$('phone').value}\nModalidad: ${delivery?'Entrega a domicilio':'Recogida en tienda'}\n${delivery?`Calle y número: ${address}`:`Hora de recogida: ${$('pickupTime').value}`}\nNotas: ${$('note').value||'-'}`;window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`,'_blank')}
 updateFulfillment();tabs();grid();bar();
 </script>
 </body>

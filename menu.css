@@ -1,0 +1,24 @@
+body{position:relative;isolation:isolate;background:var(--bg)}
+body::before{content:"";position:fixed;inset:-18%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 18% 22%,rgba(251,191,36,.12),transparent 36%),radial-gradient(ellipse at 82% 72%,rgba(249,115,22,.1),transparent 34%);animation:menu-glow 24s ease-in-out infinite alternate}
+#bar{background:#0f766e;border:1px solid rgba(255,255,255,.65);font-weight:650;box-shadow:0 9px 24px rgba(15,118,110,.38);transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+#bar b{font-size:18px}
+#bar:hover{background:#115e59;transform:translateY(-2px);box-shadow:0 12px 28px rgba(15,118,110,.48)}
+#bar:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.shop-meta{display:grid;gap:4px;margin:12px auto 0;color:var(--mut);font-size:12px}
+.shop-meta strong{color:var(--ink)}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.fulfillment{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:14px 0}
+.fulfillment button{min-height:82px;border:2px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);font:inherit;font-weight:650;cursor:pointer;transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+.fulfillment button span{display:block;font-size:23px;margin-bottom:3px}
+.fulfillment button.active,.fulfillment button[aria-pressed="true"]{border-color:#991b1b;background:#b91c1c;color:#fff;box-shadow:0 5px 16px rgba(0,0,0,.2);transform:translateY(-2px)}
+.fulfillment button.active::after,.fulfillment button[aria-pressed="true"]::after{content:"✓ Seleccionado";display:block;margin-top:4px;font-size:11px;font-weight:700}
+.fulfillment button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.field-label{display:block;margin-top:8px;color:var(--mut);font-size:12px;font-weight:650}
+.field-label input{margin-top:4px}
+.form-section[hidden]{display:none}
+.tab{transition:transform .18s ease,box-shadow .18s ease}
+.tab:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.demo a{color:var(--acc);font-weight:600}
+.emo img.product-image{object-fit:contain;padding:6px;background:var(--card)}
+@keyframes menu-glow{from{transform:translate3d(-2%,0,0) scale(1)}to{transform:translate3d(2%,1%,0) scale(1.05)}}
+@media(prefers-reduced-motion:reduce){body::before{animation:none}.tab,.fulfillment button,#bar{transition:none}}
