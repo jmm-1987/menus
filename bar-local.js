@@ -1,0 +1,7 @@
+(()=>{
+const $=s=>document.querySelector(s),list=$('#received-orders');let count=0;
+const samples=[['Ana','2 × El de siempre — 15,00 €\n1 × Refresco — 2,50 €\nTotal: 17,50 €\nRecogida: 21:00\nNotas: sin pimiento.'],['Luis','1 × Bravas con carácter — 5,50 €\n1 × Cerveza — 2,50 €\nTotal: 8,00 €\nMesa: 4\nNotas: alioli aparte.'],['Marta','1 × Huevos rotos con jamón — 12,00 €\n1 × Agua — 1,50 €\nTotal: 13,50 €\nRecogida: 21:15']];
+function arrive(name,text){list.querySelector('.receiver-empty')?.remove();const bubble=document.createElement('div');bubble.className='order-bubble';const title=document.createElement('b');title.textContent='Pedido de '+name;const content=document.createElement('span');content.textContent=text;const time=document.createElement('time');time.textContent='Ahora · demostración';bubble.append(title,content,time);list.prepend(bubble);while(list.children.length>3)list.lastElementChild.remove();$('#arrival-summary').textContent='Nuevo pedido · '+name;$('#simulate-arrival').textContent='Ver otro pedido de ejemplo ↗';}
+$('#simulate-arrival').onclick=()=>{const s=samples[count++%samples.length];arrive(...s);};
+$('#preview-arrival').onclick=()=>{const name=document.querySelector('[name=customer]').value||'ejemplo';arrive(name,$('#message').textContent);$('#cart-dialog').close();$('#pedidos').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});};
+})();
