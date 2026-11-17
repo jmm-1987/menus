@@ -1,0 +1,98 @@
+[
+  [
+    "tapas",
+    "01",
+    "Ensaladilla de la casa",
+    "Patata, atún, encurtidos y nuestra mayonesa.",
+    4.5,
+    "huevo · pescado"
+  ],
+  [
+    "tapas",
+    "02",
+    "La croqueta del día",
+    "Cuatro bocados crujientes. Pregunta qué sale hoy.",
+    6,
+    "gluten · leche · huevo"
+  ],
+  [
+    "tapas",
+    "03",
+    "Bravas con carácter",
+    "Patata de verdad, salsa brava y alioli.",
+    5.5,
+    "huevo"
+  ],
+  [
+    "tapas",
+    "04",
+    "Gilda de la barra",
+    "Aceituna, piparra y anchoa. Para abrir boca.",
+    2.5,
+    "pescado"
+  ],
+  [
+    "raciones",
+    "05",
+    "Huevos rotos con jamón",
+    "Patatas, huevos y jamón. Rompe, mezcla y comparte.",
+    12,
+    "huevo"
+  ],
+  [
+    "raciones",
+    "06",
+    "Calamares a la andaluza",
+    "Crujientes, con limón y alioli aparte.",
+    13,
+    "gluten · moluscos · huevo"
+  ],
+  [
+    "raciones",
+    "07",
+    "Tabla de aquí",
+    "Una selección de quesos para alargar la charla.",
+    14,
+    "leche"
+  ],
+  [
+    "bocatas",
+    "08",
+    "El de siempre",
+    "Lomo a la plancha, queso y pimiento verde.",
+    7.5,
+    "gluten · leche"
+  ],
+  [
+    "bocatas",
+    "09",
+    "El de la huerta",
+    "Verduras a la plancha, tomate y aceite de oliva.",
+    7,
+    "gluten"
+  ],
+  [
+    "bebidas",
+    "10",
+    "Cerveza",
+    "Botellín bien frío. Consulta las variedades.",
+    2.5,
+    "gluten"
+  ],
+  [
+    "bebidas",
+    "11",
+    "Refresco",
+    "Cola, naranja o limón.",
+    2.5,
+    "Consulta la variedad"
+  ],
+  [
+    "bebidas",
+    "12",
+    "Agua",
+    "Botella de 50 cl.",
+    1.5,
+    "Sin alérgenos declarados"
+  ]
+]
